@@ -21,13 +21,23 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="ToDo" ng-controller="ToDoCtrl" ng-init="InitLoad()">
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">ToDo</h1>
+        <button class="button button-clear button-positive">+</button></div>
       </ion-header-bar>
       <ion-content>
+        <div class="list" ng-repeat="divider in ToDoList">
+          <div class="item item-divider item-icon-left">
+              <i class="icon {{divider.item_divider.icon}}"></i>
+              {{divider.item_divider.name}}
+          </div>
+          <a class="item" href="#" ng-repeat="item in divider.item_divider.items">
+            {{item.item}}
+          </a>
+        </div>
       </ion-content>
     </ion-pane>
   </body>
