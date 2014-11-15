@@ -25,11 +25,11 @@ ToDo.controller('ToDoCtrl',function($scope, $cordovaFlashlight){
 
     $scope.ToDoList=[
     {
-      "name": "Priority",
-      "icon": "ion-fireball",
+      "name": "Nothing to do",
+      "icon": "ion-sad",
       "items":
       [{
-        "item": "hint: click +Add button on top-right"
+        "item":"Add using +Add button"
       }]
     }];
   };
