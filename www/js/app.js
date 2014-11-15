@@ -22,32 +22,26 @@ ToDo.controller('ToDoCtrl',function($scope){
   $scope.InitLoad=function(){
     $scope.ToDoList=[
     {
-        "item_divider": {
-            "name": "Priority",
-            "icon": "ion-fireball",
-            "items": [
-                {
-                    "item": "AITEM1"
-                },
-                {
-                    "item": "AITEM2"
-                }
-            ]
-        }
+      "name": "Priority",
+      "icon": "ion-fireball",
+      "items":
+      [{
+        "item": "AITEM1"
+      },
+      {
+        "item": "AITEM2"
+      }]
     },
     {
-        "item_divider": {
-            "name": "List",
-            "icon": "ion-pound",
-            "items": [
-                {
-                    "item": "BITEM1"
-                },
-                {
-                    "item": "BITEM2"
-                }
-            ]
-        }
+      "name": "List",
+      "icon": "ion-pound",
+      "items":
+      [{
+        "item": "BITEM1"
+      },
+      {
+        "item": "BITEM2"
+      }]
     }];
   };
 });

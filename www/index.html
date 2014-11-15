@@ -31,10 +31,10 @@
       <ion-content>
         <div class="list" ng-repeat="divider in ToDoList">
           <div class="item item-divider item-icon-left">
-              <i class="icon {{divider.item_divider.icon}}"></i>
-              {{divider.item_divider.name}}
+              <i class="icon {{divider.icon}}"></i>
+              {{divider.name}}
           </div>
-          <a class="item" href="#" ng-repeat="item in divider.item_divider.items">
+          <a class="item" href="#" ng-repeat="item in divider.items">
             {{item.item}}
           </a>
         </div>
