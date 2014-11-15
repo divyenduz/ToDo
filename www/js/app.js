@@ -29,7 +29,7 @@ ToDo.controller('ToDoCtrl',function($scope, $cordovaFlashlight){
       "icon": "ion-sad",
       "items":
       [{
-        "item":"Add using +Add button"
+        "item":"Use + to add"
       }]
     }];
   };
