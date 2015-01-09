@@ -1,10 +1,10 @@
 <ion-modal-view>
   <ion-header-bar>
-    <button class="button button-clear button-positive" ng-click="close()">
+    <button class="button button-clear button-positive" ng-click="closeAddModal()">
       <i class="icon ion-close-circled"></i>
     </button>
     <h1 class="title">Add item</h1>
-    <button class="button button-clear button-positive" ng-click="addItem()">
+    <button ng-show="item.text.length>0" class="button button-clear button-positive" ng-click="addItem()">
       <i class="icon ion-plus-circled"></i>
     </button>
   </ion-header-bar>

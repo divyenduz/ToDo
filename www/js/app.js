@@ -30,14 +30,23 @@ ToDo.run(function($ionicPlatform) {
   });
 });
 
-ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicListDelegate, $ionicPopup){
-  function onStorageEvent(storageEvent){
-    console.log(storageEvent);
-    $scope.list=$localstorage.getObject("list");
-  }
+ToDo.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+  .state('/', {
+    url: '/',
+    templateUrl: 'templates/dashboard.html'
+  })
 
-  window.addEventListener('storage', onStorageEvent, false);
+  // Not used right now
+  .state('info', {
+    url: '/info',
+    templateUrl: 'templates/info.html'
+  });
 
+  $urlRouterProvider.otherwise('/');
+});
+
+ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModal, $ionicListDelegate, $ionicPopup, $ionicSlideBoxDelegate){
   function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -52,21 +61,36 @@ ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicLi
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.addModal = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/info.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.informationModal = modal;
   });
 
   $scope.list=$localstorage.getObject("list");
 
-  $scope.open=function(){
+  $scope.openAddModal=function(){
     $scope.item={};
     $scope.item.text="";
     $scope.item.tags=[{text:"Urgent", checked:false, class:"assertive"},
 {text:"Important", checked:false, class:"positive"}];
-    $scope.modal.show();
+    $scope.addModal.show();
     $ionicListDelegate.closeOptionButtons();
   };
-  $scope.close=function(){
-    $scope.modal.hide();
+  $scope.closeAddModal=function(){
+    $scope.addModal.hide();
+  };
+  $scope.openInformationModal=function(){
+    $scope.informationModal.show();
+    $ionicSlideBoxDelegate.update();
+    $ionicListDelegate.closeOptionButtons();
+  };
+  $scope.closeInformationModal=function(){
+    $scope.informationModal.hide();
   };
   var Item = function(text, tags){
     var chosenTags=[]
@@ -93,7 +117,7 @@ ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicLi
     }else{
       $scope.list.push(saveItem);
       $localstorage.setObject("list", $scope.list);
-      $scope.modal.hide();
+      $scope.addModal.hide();
     }
   };
   $scope.completeItem=function(item){
