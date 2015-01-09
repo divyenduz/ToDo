@@ -18,12 +18,56 @@ ToDo.run(function($ionicPlatform) {
   });
 });
 
-ToDo.controller('ToDoCtrl',function($scope, $cordovaFlashlight){
-  $scope.InitLoad=function(){
-    $scope.list=[];
-  };
+ToDo.controller('ToDoCtrl',function($scope, $ionicModal){
+  $ionicModal.fromTemplateUrl('templates/new.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
+  $scope.list=[{
+    text: "Gig text",
+    tags: ["Red", "Blue"]
+  },{
+    text: "Gig text",
+    tags: ["Red"]
+  },{
+    text: "Gig text",
+    tags: ["Blue"]
+  },
+  {
+    text: "Gig text",
+    tags: []
+  }];
+
+  $scope.open=function(){
+    $scope.item={};
+    $scope.item.text="";
+    $scope.item.tags=[{text:"Urgent", checked:false, class:"assertive"},
+{text:"Important", checked:false, class:"positive"}];
+    $scope.modal.show();
+  };
+  $scope.close=function(){
+    $scope.modal.hide();
+  };
+  var Item = function(text, tags){
+    var chosenTags=[]
+    for(i in tags){
+      tag=tags[i];
+      if(tag.hasOwnProperty("checked")){
+        if(tag.checked==true){
+          chosenTags.push(tag.text);
+        }
+      }
+    }
+    return {
+      text: text,
+      tags: chosenTags
+    }
+  }
   $scope.addItem=function(){
-    ;
+    $scope.list.push(Item($scope.item.text, $scope.item.tags));
+    $scope.modal.hide();
   };
 });

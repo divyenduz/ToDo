@@ -1,0 +1,28 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <button class="button button-clear button-positive" ng-click="close()">
+      <i class="icon ion-close-circled"></i>
+    </button>
+    <h1 class="title">Add item</h1>
+    <button class="button button-clear button-positive" ng-click="addItem()">
+      <i class="icon ion-plus-circled"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">What to do ?</span>
+        <input type="text" placeholder="What to do ?" ng-model="item.text">
+      </label>
+
+      <ion-toggle toggle-class="toggle-{{tag.class}}" ng-repeat="tag in item.tags"
+        ng-model="tag.checked"
+        ng-checked="tag.checked">
+        {{tag.text}}
+      </ion-toggle>
+      {{item.text}}
+      {{item.tags}}
+
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -26,8 +26,8 @@
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">ToDo</h1>
-        <button class="button button-clear button-positive" ng-click="addItem()">
+        <h1 class="title">Dashboard</h1>
+        <button class="button button-clear button-positive" ng-click="open()">
           <i class="icon ion-ios7-plus-outline"></i>
         </button>
       </ion-header-bar>
@@ -36,11 +36,15 @@
           <i class="icon ion-search placeholder-icon"></i>
           <input type="text" ng-model="searchFilter" placeholder="Search...">
         </label>
-        <div ng-if="list.length>0" class="list" ng-repeat="item in list | filter: filterSearch">
-          <a class="item" href="#">
+        <ion-list ng-if="list.length>0" ng-repeat="item in list | filter: filterSearch">
+          <ion-item href="#">
             {{item.text}}
-          </a>
-        </div>
+            <span ng-if="item.tags.length==2" class="badge badge-balanced">!</span>
+            <span ng-if="item.tags.length==1&&'Red'==item.tags[0]" class="badge badge-assertive">!</span>
+            <span ng-if="item.tags.length==1&&'Blue'==item.tags[0]" class="badge badge-positive">!</span>
+            <span ng-if="item.tags.length==0" class="badge badge-dark">!</span>
+          </ion-item>
+        </ion-list>
 
         <div ng-if="list.length==0" align="center">
           <h2>
