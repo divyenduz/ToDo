@@ -26,23 +26,15 @@
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <button class="button button-clear button-positive" ng-click="toggleFlash()">
-          <i class="icon {{flashState}}"></i>
-        </button></div>
         <h1 class="title">ToDo</h1>
         <button class="button button-clear button-positive" ng-click="addItem()">
           <i class="icon ion-ios7-plus-outline"></i>
         </button>
-
       </ion-header-bar>
       <ion-content>
-        <div class="list" ng-repeat="divider in ToDoList">
-          <div class="item item-divider item-icon-left">
-              <i class="icon {{divider.icon}}"></i>
-              {{divider.name}}
-          </div>
-          <a class="item" href="#" ng-repeat="item in divider.items">
-            {{item.item}}
+        <div class="list" ng-repeat="item in list | filter: filterSearch">
+          <a class="item" href="#">
+            {{item.text}}
           </a>
         </div>
       </ion-content>

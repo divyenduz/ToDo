@@ -20,10 +20,7 @@ ToDo.run(function($ionicPlatform) {
 
 ToDo.controller('ToDoCtrl',function($scope, $cordovaFlashlight){
   $scope.InitLoad=function(){
-
-    $scope.flashState="ion-ios7-bolt-outline";
-
-    $scope.ToDoList=[
+    $scope.list=[
     {
       "name": "Nothing to do",
       "icon": "ion-sad",
@@ -32,25 +29,6 @@ ToDo.controller('ToDoCtrl',function($scope, $cordovaFlashlight){
         "item":"Use + to add"
       }]
     }];
-  };
-
-  $scope.toggleFlash=function(){
-    $cordovaFlashlight.available().then(function(availability) {
-      var avail = availability; // is available
-      console.log("Availability:" + avail);
-      $cordovaFlashlight.toggle().then(
-        function (success) {
-          if($scope.flashState==="ion-ios7-bolt-outline")
-            $scope.flashState="ion-ios7-bolt";
-          else
-            $scope.flashState="ion-ios7-bolt-outline";
-        },
-        function (error) {
-          console.log("Failed to switch flash state");
-        });
-    }, function () {
-      console.log("Flash light not available");
-    });
   };
 
   $scope.addItem=function(){
