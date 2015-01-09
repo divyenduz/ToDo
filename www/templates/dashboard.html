@@ -11,8 +11,11 @@
         <span ng-if="item.tags.length==1&&'Urgent'==item.tags[0]" class="badge badge-assertive">!</span>
         <span ng-if="item.tags.length==1&&'Important'==item.tags[0]" class="badge badge-positive">!</span>
         <span ng-if="item.tags.length==0" class="badge badge-dark">!</span>
-        <ion-option-button class="button-balanced" ng-click="completeItem(item)">
+        <ion-option-button ng-if="!item.status" class="button-balanced" ng-click="completeItem(item)">
           &nbsp;<i class="icon ion-checkmark"></i>
+        </ion-option-button>
+        <ion-option-button ng-if="item.status" class="button-energized" ng-click="completeItem(item)">
+          &nbsp;<i class="icon ion-close"></i>
         </ion-option-button>
         <ion-option-button ng-if="false" class="button-positive" ng-click="editItem(item)">
           &nbsp;<i class="icon ion-edit"></i>

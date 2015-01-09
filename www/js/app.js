@@ -84,6 +84,10 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.informationModal = modal;
+    $scope.firstRun=($localstorage.get("firstRun", "true") === "true");    
+    if($scope.firstRun===true){
+      $scope.openInformationModal();
+    }
   });
 
   $scope.list=$localstorage.getObject("list").reverse();
@@ -105,7 +109,10 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     $ionicListDelegate.closeOptionButtons();
   };
   $scope.closeInformationModal=function(){
+    $localstorage.set("firstRun", "false");    
+    $scope.firstRun=($localstorage.get("firstRun", "true") === "true");        
     $scope.informationModal.hide();
+
   };
   var Item = function(text, tags){
     var chosenTags=[]

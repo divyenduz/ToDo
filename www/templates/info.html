@@ -1,21 +1,22 @@
 <ion-modal-view>
   <ion-header-bar>
-    <button class="button button-clear button-positive" ng-click="closeInformationModal()">
+    <button ng-if="!firstRun" class="button button-clear button-positive" ng-click="closeInformationModal()">
       <i class="icon ion-close-circled"></i>
     </button>
-    <h1 class="title">Information</h1>
+    <h1 class="title">Welcome!</h1>
+    <button ng-if="firstRun" class="button button-clear button-positive" ng-click="closeInformationModal()">
+      Done
+    </button>
   </ion-header-bar>
-  <ion-content scroll="false">
+  <ion-content scrollbar-x="false">
     <ion-slide-box>
       <ion-slide>
-        <h3 align="center" class="gray">Be Productive!!</h3>
         <img src="img/ui.png" />
         <h3 align="center" class="gray">ToDo List based on <br />Urgent Important Matrix</h3>
         <br />
       </ion-slide>
 
       <ion-slide class="item item-text-wrap">
-        <h3 align="center" class="gray">Features</h3>
         <div class="list">
           <div class="item item-divider">
             <strong>1. Add tasks as Urgent or important or both or none</strong>
@@ -49,10 +50,13 @@
             <strong>5. Minimize time waste by avoiding black</strong>
           </div>
           <div class="item item-divider">
-            <strong>6. Stick to the plan ;)</strong>
+            <strong>6. Swipe item to mark complete or delete</strong>
+          </div>
+          <div class="item item-divider">
+            <strong>7. Stick to the plan ;)</strong>
           </div>
         </div>
       </ion-slide>
     </ion-slide-box>
-</ion-content>
+  </ion-content>
 </ion-modal-view>
