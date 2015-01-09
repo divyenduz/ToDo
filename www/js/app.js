@@ -57,6 +57,18 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     return false;
   }
 
+  $scope.logicSort=function(item){
+    var factor=0;
+    if(item.tags.length===1){
+      if(item.tags[0]==="Urgent"){
+        factor=-0.5;
+      }else{
+        factor=0.5;
+      }
+    }
+    return item.tags.length+factor;
+  };
+
   $ionicModal.fromTemplateUrl('templates/new.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -71,7 +83,7 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     $scope.informationModal = modal;
   });
 
-  $scope.list=$localstorage.getObject("list");
+  $scope.list=$localstorage.getObject("list").reverse();
 
   $scope.openAddModal=function(){
     $scope.item={};
@@ -116,14 +128,14 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
       });
     }else{
       $scope.list.push(saveItem);
-      $localstorage.setObject("list", $scope.list);
+      $localstorage.setObject("list", $scope.list.reverse());
       $scope.addModal.hide();
     }
   };
   $scope.completeItem=function(item){
     var index=$scope.list.indexOf(item);
     $scope.list[index].status=!$scope.list[index].status;
-    $localstorage.setObject("list", $scope.list);
+    $localstorage.setObject("list", $scope.list.reverse());
     $ionicListDelegate.closeOptionButtons();
   };
   $scope.deleteItem=function(item){
@@ -134,7 +146,7 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
       if(res) {
         var index=$scope.list.indexOf(item);
         $scope.list.splice(index, 1);
-        $localstorage.setObject("list", $scope.list);
+        $localstorage.setObject("list", $scope.list.reverse());
         $ionicListDelegate.closeOptionButtons();
       }
     });
