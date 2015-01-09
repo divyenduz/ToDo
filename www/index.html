@@ -39,9 +39,9 @@
           <i class="icon ion-search placeholder-icon"></i>
           <input type="text" ng-model="filterText" placeholder="Search...">
         </label>
-        <ion-list ng-show="list.length>0" ng-repeat="item in list | filter: filterText">
-          <ion-item href="#">
-            {{item.text}}
+        <ion-list ng-show="list.length>0" ng-repeat="item in list | filter: filterText track by $index">
+          <ion-item>
+            <span class="done-{{item.status}}">{{item.text}}</span>
             <span ng-if="item.tags.length==2" class="badge badge-balanced">!</span>
             <span ng-if="item.tags.length==1&&'Urgent'==item.tags[0]" class="badge badge-assertive">!</span>
             <span ng-if="item.tags.length==1&&'Important'==item.tags[0]" class="badge badge-positive">!</span>
@@ -49,7 +49,7 @@
             <ion-option-button class="button-balanced" ng-click="completeItem(item)">
               &nbsp;<i class="icon ion-checkmark"></i>
             </ion-option-button>
-            <ion-option-button class="button-positive" ng-click="editItem(item)">
+            <ion-option-button ng-if="false" class="button-positive" ng-click="editItem(item)">
               &nbsp;<i class="icon ion-edit"></i>
             </ion-option-button>
             <ion-option-button class="button-assertive" ng-click="deleteItem(item)">

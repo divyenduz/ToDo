@@ -31,6 +31,13 @@ ToDo.run(function($ionicPlatform) {
 });
 
 ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicListDelegate, $ionicPopup){
+  function onStorageEvent(storageEvent){
+    console.log(storageEvent);
+    $scope.list=$localstorage.getObject("list");
+  }
+
+  window.addEventListener('storage', onStorageEvent, false);
+
   function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -73,6 +80,7 @@ ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicLi
     }
     return {
       text: text,
+      status: false,
       tags: chosenTags
     }
   }
@@ -88,13 +96,20 @@ ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicLi
       $scope.modal.hide();
     }
   };
-  $scope.deleteItem=function($index){
+  $scope.completeItem=function(item){
+    var index=$scope.list.indexOf(item);
+    $scope.list[index].status=!$scope.list[index].status;
+    $localstorage.setObject("list", $scope.list);
+    $ionicListDelegate.closeOptionButtons();
+  };
+  $scope.deleteItem=function(item){
     var confirmPopup = $ionicPopup.confirm({
       title: 'Delete task ?'
     });
     confirmPopup.then(function(res) {
       if(res) {
-        $scope.list.splice($index, 1);
+        var index=$scope.list.indexOf(item);
+        $scope.list.splice(index, 1);
         $localstorage.setObject("list", $scope.list);
         $ionicListDelegate.closeOptionButtons();
       }
