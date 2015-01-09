@@ -5,10 +5,54 @@
     </button>
     <h1 class="title">Information</h1>
   </ion-header-bar>
-  <ion-content>
+  <ion-content scroll="false">
     <ion-slide-box>
-      <ion-slide><img src="http://icdn4.digitaltrends.com/image/microsoft_xp_bliss_desktop_image-650x0.jpg" /></ion-slide>
-      <ion-slide><img src="http://ionicframework.com.s3.amazonaws.com/docs/controllers/slideBox.gif" /></ion-slide>
+      <ion-slide>
+        <h3 align="center" class="gray">Be Productive!!</h3>
+        <img src="img/ui.png" />
+        <h3 align="center" class="gray">ToDo List based on <br />Urgent Important Matrix</h3>
+        <br />
+      </ion-slide>
+
+      <ion-slide class="item item-text-wrap">
+        <h3 align="center" class="gray">Features</h3>
+        <div class="list">
+          <div class="item item-divider">
+            <strong>1. Add tasks as Urgent or important or both or none</strong>
+          </div>
+          <div class="item item-divider">
+            <strong>2. App will sort your tasks in following order</strong>
+          </div>
+          <a class="item">
+            Urgent + Important (Critical)
+            <span class="badge badge-balanced">!</span>
+          </a>
+          <a class="item">
+            Important (> Urgent)
+            <span class="badge badge-positive">!</span>
+          </a>
+          <a class="item">
+            Urgent (Interruptive e.g. call)
+            <span class="badge badge-assertive">!</span>
+          </a>
+          <a class="item">
+            Time waste (Avoid)
+            <span class="badge badge-dark">!</span>
+          </a>
+          <div class="item item-divider">
+            <strong>3. Try to have max tasks as green/blue</strong>
+          </div>
+          <div class="item item-divider">
+            <strong>4. Only unavoidable reds</strong>
+          </div>
+          <div class="item item-divider">
+            <strong>5. Minimize time waste by avoiding black</strong>
+          </div>
+          <div class="item item-divider">
+            <strong>6. Stick to the plan ;)</strong>
+          </div>
+        </div>
+      </ion-slide>
     </ion-slide-box>
 </ion-content>
 </ion-modal-view>

@@ -3,6 +3,10 @@ h2{
   padding-top: 150px;
 }
 
+.gray{
+  color: #ccc;
+}
+
 .done-true {
   text-decoration: line-through;
   color: grey;
