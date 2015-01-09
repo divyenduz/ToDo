@@ -32,10 +32,22 @@
         </button>
       </ion-header-bar>
       <ion-content>
-        <div class="list" ng-repeat="item in list | filter: filterSearch">
+        <label ng-if="list.length>0" class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" ng-model="searchFilter" placeholder="Search...">
+        </label>
+        <div ng-if="list.length>0" class="list" ng-repeat="item in list | filter: filterSearch">
           <a class="item" href="#">
             {{item.text}}
           </a>
+        </div>
+
+        <div ng-if="list.length==0" align="center">
+          <h2>
+            <i class="icon ion-happy"></i>
+            <br />
+            No work! Yayyy!!
+          </h2>
         </div>
       </ion-content>
     </ion-pane>

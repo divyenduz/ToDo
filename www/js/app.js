@@ -20,15 +20,7 @@ ToDo.run(function($ionicPlatform) {
 
 ToDo.controller('ToDoCtrl',function($scope, $cordovaFlashlight){
   $scope.InitLoad=function(){
-    $scope.list=[
-    {
-      "name": "Nothing to do",
-      "icon": "ion-sad",
-      "items":
-      [{
-        "item":"Use + to add"
-      }]
-    }];
+    $scope.list=[];
   };
 
   $scope.addItem=function(){
