@@ -66,6 +66,9 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
         factor=0.5;
       }
     }
+    if(item.status===true){
+      factor=-5;
+    }
     return item.tags.length+factor;
   };
 
