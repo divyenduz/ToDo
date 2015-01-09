@@ -26,23 +26,35 @@
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
+        <button class="button button-clear button-positive" ng-click="open">
+          <i class="icon ion-ios7-information-outline"></i>
+        </button>
         <h1 class="title">Dashboard</h1>
         <button class="button button-clear button-positive" ng-click="open()">
           <i class="icon ion-ios7-plus-outline"></i>
         </button>
       </ion-header-bar>
       <ion-content>
-        <label ng-if="list.length>0" class="item item-input">
+        <label ng-show="list.length>10" class="item item-input">
           <i class="icon ion-search placeholder-icon"></i>
-          <input type="text" ng-model="searchFilter" placeholder="Search...">
+          <input type="text" ng-model="filterText" placeholder="Search...">
         </label>
-        <ion-list ng-if="list.length>0" ng-repeat="item in list | filter: filterSearch">
+        <ion-list ng-show="list.length>0" ng-repeat="item in list | filter: filterText">
           <ion-item href="#">
             {{item.text}}
             <span ng-if="item.tags.length==2" class="badge badge-balanced">!</span>
-            <span ng-if="item.tags.length==1&&'Red'==item.tags[0]" class="badge badge-assertive">!</span>
-            <span ng-if="item.tags.length==1&&'Blue'==item.tags[0]" class="badge badge-positive">!</span>
+            <span ng-if="item.tags.length==1&&'Urgent'==item.tags[0]" class="badge badge-assertive">!</span>
+            <span ng-if="item.tags.length==1&&'Important'==item.tags[0]" class="badge badge-positive">!</span>
             <span ng-if="item.tags.length==0" class="badge badge-dark">!</span>
+            <ion-option-button class="button-balanced" ng-click="completeItem(item)">
+              &nbsp;<i class="icon ion-checkmark"></i>
+            </ion-option-button>
+            <ion-option-button class="button-positive" ng-click="editItem(item)">
+              &nbsp;<i class="icon ion-edit"></i>
+            </ion-option-button>
+            <ion-option-button class="button-assertive" ng-click="deleteItem(item)">
+              &nbsp;<i class="icon ion-trash-a"></i>
+            </ion-option-button>
           </ion-item>
         </ion-list>
 

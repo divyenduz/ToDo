@@ -1,9 +1,21 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 var ToDo=angular.module('ToDo', ['ngCordova','ionic']);
+
+ToDo.factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '[]');
+    }
+  }
+}]);
 
 ToDo.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -18,7 +30,17 @@ ToDo.run(function($ionicPlatform) {
   });
 });
 
-ToDo.controller('ToDoCtrl',function($scope, $ionicModal){
+ToDo.controller('ToDoCtrl',function($scope, $localstorage, $ionicModal, $ionicListDelegate, $ionicPopup){
+  function containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i].text == obj.text) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   $ionicModal.fromTemplateUrl('templates/new.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -26,20 +48,7 @@ ToDo.controller('ToDoCtrl',function($scope, $ionicModal){
     $scope.modal = modal;
   });
 
-  $scope.list=[{
-    text: "Gig text",
-    tags: ["Red", "Blue"]
-  },{
-    text: "Gig text",
-    tags: ["Red"]
-  },{
-    text: "Gig text",
-    tags: ["Blue"]
-  },
-  {
-    text: "Gig text",
-    tags: []
-  }];
+  $scope.list=$localstorage.getObject("list");
 
   $scope.open=function(){
     $scope.item={};
@@ -47,6 +56,7 @@ ToDo.controller('ToDoCtrl',function($scope, $ionicModal){
     $scope.item.tags=[{text:"Urgent", checked:false, class:"assertive"},
 {text:"Important", checked:false, class:"positive"}];
     $scope.modal.show();
+    $ionicListDelegate.closeOptionButtons();
   };
   $scope.close=function(){
     $scope.modal.hide();
@@ -67,7 +77,27 @@ ToDo.controller('ToDoCtrl',function($scope, $ionicModal){
     }
   }
   $scope.addItem=function(){
-    $scope.list.push(Item($scope.item.text, $scope.item.tags));
-    $scope.modal.hide();
+    var saveItem=Item($scope.item.text, $scope.item.tags);
+    if (containsObject(saveItem, $scope.list)){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Duplicate task'
+      });
+    }else{
+      $scope.list.push(saveItem);
+      $localstorage.setObject("list", $scope.list);
+      $scope.modal.hide();
+    }
   };
+  $scope.deleteItem=function($index){
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Delete task ?'
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        $scope.list.splice($index, 1);
+        $localstorage.setObject("list", $scope.list);
+        $ionicListDelegate.closeOptionButtons();
+      }
+    });
+  }
 });
