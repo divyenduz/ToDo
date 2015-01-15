@@ -12,7 +12,7 @@
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">What to do ?</span>
-        <input type="text" placeholder="What to do ?" ng-model="item.text">
+        <input char-limit="30" type="text" placeholder="What to do ?" ng-model="item.text">
       </label>
 
       <ion-toggle toggle-class="toggle-{{tag.class}}" ng-repeat="tag in item.tags"
