@@ -137,7 +137,7 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
         title: 'Duplicate task'
       });
     }else{
-      $scope.list.push(saveItem);
+      $scope.list.unshift(saveItem);
       $localstorage.setObject("list", $scope.list);
       $scope.addModal.hide();
     }
