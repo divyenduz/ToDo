@@ -84,13 +84,13 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.informationModal = modal;
-    $scope.firstRun=($localstorage.get("firstRun", "true") === "true");    
+    $scope.firstRun=($localstorage.get("firstRun", "true") === "true");
     if($scope.firstRun===true){
       $scope.openInformationModal();
     }
   });
 
-  $scope.list=$localstorage.getObject("list").reverse();
+  $scope.list=$localstorage.getObject("list");
 
   $scope.openAddModal=function(){
     $scope.item={};
@@ -109,8 +109,8 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     $ionicListDelegate.closeOptionButtons();
   };
   $scope.closeInformationModal=function(){
-    $localstorage.set("firstRun", "false");    
-    $scope.firstRun=($localstorage.get("firstRun", "true") === "true");        
+    $localstorage.set("firstRun", "false");
+    $scope.firstRun=($localstorage.get("firstRun", "true") === "true");
     $scope.informationModal.hide();
 
   };
@@ -138,14 +138,14 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
       });
     }else{
       $scope.list.push(saveItem);
-      $localstorage.setObject("list", $scope.list.reverse());
+      $localstorage.setObject("list", $scope.list);
       $scope.addModal.hide();
     }
   };
   $scope.completeItem=function(item){
     var index=$scope.list.indexOf(item);
     $scope.list[index].status=!$scope.list[index].status;
-    $localstorage.setObject("list", $scope.list.reverse());
+    $localstorage.setObject("list", $scope.list);
     $ionicListDelegate.closeOptionButtons();
   };
   $scope.deleteItem=function(item){
@@ -156,7 +156,7 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
       if(res) {
         var index=$scope.list.indexOf(item);
         $scope.list.splice(index, 1);
-        $localstorage.setObject("list", $scope.list.reverse());
+        $localstorage.setObject("list", $scope.list);
         $ionicListDelegate.closeOptionButtons();
       }
     });
