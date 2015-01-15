@@ -3,6 +3,16 @@ h2{
   padding-top: 150px;
 }
 
+.sub{
+  font-size: 12px;
+  float: right;
+  padding-right: 20px;
+}
+
+.red{
+  color: red;
+}
+
 .gray{
   color: #ccc;
 }

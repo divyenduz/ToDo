@@ -154,7 +154,7 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     }
   }
   $scope.addItem=function(){
-    var saveItem=Item($scope.item.text, $scope.item.tags);
+    var saveItem=Item($scope.item.text.trim(), $scope.item.tags);
     if (containsObject(saveItem, $scope.list)){
       var alertPopup = $ionicPopup.alert({
         title: 'Duplicate task'
