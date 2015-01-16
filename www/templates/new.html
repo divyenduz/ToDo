@@ -20,7 +20,7 @@
       <ion-toggle toggle-class="toggle-{{tag.class}}" ng-repeat="tag in item.tags"
         ng-model="tag.checked"
         ng-checked="tag.checked">
-        {{tag.text}}
+        {{::tag.text}}
       </ion-toggle>
     </div>
   </ion-content>
