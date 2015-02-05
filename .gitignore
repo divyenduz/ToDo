@@ -7,3 +7,4 @@ plugins/
 release/
 
 www/js/bower_components
+www/js/_react
