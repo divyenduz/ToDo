@@ -1,4 +1,4 @@
-var ToDo=angular.module('ToDo', ['ngCordova','ionic']);
+var ToDo=angular.module('ToDo', ['ionic']);
 
 ToDo.factory('$localstorage', ['$window', function($window) {
   return {
@@ -14,7 +14,7 @@ ToDo.factory('$localstorage', ['$window', function($window) {
     getObject: function(key) {
       return JSON.parse($window.localStorage[key] || '[]');
     }
-  }
+  };
 }]);
 
 ToDo.directive('charLimit', function(){
@@ -138,11 +138,11 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
 
   };
   var Item = function(text, tags){
-    var chosenTags=[]
-    for(i in tags){
+    var chosenTags=[];
+    for(var i in tags){
       tag=tags[i];
       if(tag.hasOwnProperty("checked")){
-        if(tag.checked==true){
+        if(tag.checked===true){
           chosenTags.push(tag.text);
         }
       }
@@ -151,8 +151,8 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
       text: text,
       status: false,
       tags: chosenTags
-    }
-  }
+    };
+  };
   $scope.addItem=function(){
     var saveItem=Item($scope.item.text.trim(), $scope.item.tags);
     if (containsObject(saveItem, $scope.list)){
@@ -183,5 +183,5 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
         $ionicListDelegate.closeOptionButtons();
       }
     });
-  }
+  };
 });
