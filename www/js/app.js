@@ -1,4 +1,4 @@
-var ToDo=angular.module('ToDo', ['ionic']);
+var ToDo=angular.module('ToDo', ['ionic', 'react']);
 
 ToDo.factory('$localstorage', ['$window', function($window) {
   return {
@@ -70,6 +70,11 @@ ToDo.config(function($stateProvider, $urlRouterProvider) {
 });
 
 ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModal, $ionicListDelegate, $ionicPopup, $ionicSlideBoxDelegate){
+  $scope.timerProps={
+    createTime: "1423121154846",
+    class: "timer-time"
+  };
+
   function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -150,7 +155,8 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     return {
       text: text,
       status: false,
-      tags: chosenTags
+      tags: chosenTags,
+      createTime: Date.now()
     };
   };
   $scope.addItem=function(){

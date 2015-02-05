@@ -14,15 +14,19 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
-    <script src="js/ng-cordova.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/bower_components/react/react.js"></script>
+    <script src="js/bower_components/ngReact/ngReact.js"></script>
+    <script src="js/_react/list.js"></script>
+    <script src="js/_react/timer.js"></script>
   </head>
   <body ng-app="ToDo" ng-controller="ToDoCtrl" ng-init="InitLoad()">
+    <!-- <div id="timer"></div> -->
+    <!-- <react-component name="Timer" props="timerProps" /> -->
     <ion-pane>
       <ion-header-bar class="bar-stable">
         <button class="button button-clear button-positive" ng-click="openInformationModal()">
