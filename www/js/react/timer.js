@@ -1,12 +1,6 @@
 var Timer=React.createClass({
   getElapsedTime: function(time){
-    try {
-      return (Date.now()-this.props.createTime) / (1000);
-    }
-    catch(err) {
-      return (Date.now()-0) / (1000);
-    }
-
+    return (Date.now()-this.props.createTime) / (1000);    
   },
   getElapsedTimeMessage: function(time){
     try {

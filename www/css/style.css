@@ -22,7 +22,15 @@ h2{
   color: grey;
 }
 
+.done-false {
+  font-weight: bold;
+  color: black;
+}
+
 .timer-time{
-  font-size: 12px;  
   color: gray;
+}
+
+.timerComponent{
+  font-size: 12px;
 }

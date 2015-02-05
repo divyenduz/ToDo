@@ -8,7 +8,7 @@
     <ion-list ng-show="list.length>0" ng-repeat="item in list | filter: filterText | orderBy:logicSort:true track by $index">
       <ion-item>
         <span class="done-{{item.status}}">{{item.text}}</span> <br />
-        <span><react-component name="Timer" props="item" /></span>
+        <span ng-if="!item.status" class="timerComponent"><react-component name="Timer" props="item" /></span>
         <span ng-if="item.tags.length==2" class="badge badge-balanced">!</span>
         <span ng-if="item.tags.length==1&&'Urgent'==item.tags[0]" class="badge badge-assertive">!</span>
         <span ng-if="item.tags.length==1&&'Important'==item.tags[0]" class="badge badge-positive">!</span>
