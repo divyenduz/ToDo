@@ -1,0 +1,21 @@
+{
+  "name": "ToDo",
+  "version": "1.0.0",
+  "homepage": "http://divyendusingh.com/projects/todo/",
+  "authors": [
+    "Divyendu Singh <divyendu.z@gmail.com>"
+  ],
+  "description": "Internal bower init",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.12.2"
+  }
+}
