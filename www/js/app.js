@@ -17,26 +17,9 @@ ToDo.factory('$localstorage', ['$window', function($window) {
   };
 }]);
 
-ToDo.directive('charLimit', function(){
+ToDo.directive('oneItem', function(){
   return {
-    restrict: 'A',
-    link: function($scope, $element, $attributes){
-      var limit = $attributes.charLimit;
-      $element.bind('keyup', function(event){
-        var element = $element.parent().parent();
-        element.toggleClass('warning', limit - $element.val().length <= 10);
-        element.toggleClass('error', $element.val().length > limit);
-      });
-      $element.bind('keypress', function(event){
-        // Once the limit has been met or exceeded, prevent all keypresses from working
-        if ($element.val().length >= limit){
-          // Except backspace
-          if (event.keyCode != 8){
-            event.preventDefault();
-          }
-        }
-      });
-    }
+    templateUrl: "templates/directive_one_item.html"
   };
 });
 
@@ -124,7 +107,7 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     $scope.item={};
     $scope.item.text="";
     $scope.item.tags=[{text:"Urgent", checked:false, class:"assertive"},
-{text:"Important", checked:false, class:"positive"}];
+    {text:"Important", checked:false, class:"positive"}];
     $scope.addModal.show();
     $ionicListDelegate.closeOptionButtons();
   };

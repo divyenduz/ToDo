@@ -12,9 +12,7 @@
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">What to do ?</span>
-        <input char-limit="30" type="text" placeholder="What to do ?" ng-model="item.text">
-        <span ng-if="item.text.length<25" class="sub">{{item.text.length}}/30</span>
-        <span ng-if="item.text.length>=25" class="sub red">{{item.text.length}}/30</span>
+        <input type="text" placeholder="What to do ?" ng-model="item.text">
       </label>
 
       <ion-toggle toggle-class="toggle-{{tag.class}}" ng-repeat="tag in item.tags"

@@ -34,3 +34,23 @@ h2{
 .timerComponent{
   font-size: 12px;
 }
+
+.greenl-border{
+  border-left: 4px solid green;
+  /*border-right: 4px solid green;*/
+}
+
+.bluel-border{
+  border-left: 4px solid blue;
+  /*border-right: 4px solid blue;*/
+}
+
+.redl-border{
+  border-left: 4px solid red;
+  /*border-right: 4px solid red;*/
+}
+
+.blackl-border{
+  border-left: 4px solid black;
+  /*border-right: 4px solid black;*/
+}
