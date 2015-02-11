@@ -2,8 +2,8 @@
 <widget id="com.divyendusingh.todo" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>ToDo</name>
   <description>
-        A productivity suite that has started with ToDo
-    </description>
+    A productivity suite that has started with ToDo
+  </description>
   <author email="mail@divyendusingh.com" href="http://divyendusingh.com/">
       Divyendu Singh
   </author>
@@ -62,7 +62,5 @@
     <splash src="res/ios/splash/ios/Default-667h.png" width="750" height="1334"/>
     <splash src="res/ios/splash/ios/Default-736h.png" width="1242" height="2208"/>
     <splash src="res/ios/splash/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
-
   </platform>
-
 </widget>
