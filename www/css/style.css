@@ -1,3 +1,6 @@
+*{
+  -webkit-overflow-scrolling: touch;
+}
 h2{
   color: #ccc;
   padding-top: 150px;

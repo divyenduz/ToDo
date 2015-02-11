@@ -48,7 +48,6 @@ ToDo.config(function($stateProvider, $urlRouterProvider) {
     url: '/info',
     templateUrl: 'templates/info.html'
   });
-
   $urlRouterProvider.otherwise('/');
 });
 
@@ -85,14 +84,12 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
 
   $ionicModal.fromTemplateUrl('templates/new.html', {
     scope: $scope,
-    animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.addModal = modal;
   });
 
   $ionicModal.fromTemplateUrl('templates/info.html', {
     scope: $scope,
-    animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.informationModal = modal;
     $scope.firstRun=($localstorage.get("firstRun", "true") === "true");
