@@ -23,10 +23,43 @@ ToDo.directive('oneItem', function(){
   };
 });
 
-ToDo.run(function($ionicPlatform) {
+ToDo.run(function($ionicPlatform, $rootScope) {
+  $rootScope.sequentialBackButtonPresses=0;
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    if(AdMob) {
+      AdMob.createBanner({
+        adId:"ca-app-pub-8214283480745188/9862147558",
+        position:AdMob.AD_POSITION.BOTTOM_CENTER,
+        autoShow:true
+      });
+
+      AdMob.prepareInterstitial({
+        adId: "ca-app-pub-8214283480745188/2338880750",
+        autoShow:false
+      });
+    }
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($rootScope.sequentialBackButtonPresses === 1){
+        console.log("Closing app");
+        $rootScope.sequentialBackButtonPresses = 0;
+        if(AdMob){
+          AdMob.showInterstitial();
+        }
+        ionic.Platform.exitApp();
+        return false;
+      }
+      else {
+        console.log("Press again to close application");
+        window.plugins.toast.showShortBottom("Press again to close application");
+        $rootScope.sequentialBackButtonPresses++;
+        e.preventDefault();
+        return false;
+      }
+    }, 100);
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
