@@ -127,7 +127,11 @@ ToDo.controller('ToDoCtrl',function($scope, $location, $localstorage, $ionicModa
     $scope.informationModal = modal;
     $scope.firstRun=($localstorage.get("firstRun", "true") === "true");
     if($scope.firstRun===true){
-      $scope.openInformationModal();
+      // $scope.openInformationModal();
+      $ionicPopup.alert({
+        title: 'Swipe items to complete / delete'
+      });
+      $localstorage.set("firstRun", "false");
     }
   });
 
