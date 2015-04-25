@@ -32,7 +32,7 @@ ToDo.run(function($ionicPlatform, $rootScope) {
       AdMob.createBanner({
         adId:"ca-app-pub-8214283480745188/9862147558",
         position:AdMob.AD_POSITION.BOTTOM_CENTER,
-        autoShow:true
+        autoShow:false
       });
 
       AdMob.prepareInterstitial({
@@ -46,7 +46,7 @@ ToDo.run(function($ionicPlatform, $rootScope) {
         console.log("Closing app");
         $rootScope.sequentialBackButtonPresses = 0;
         if(AdMob){
-          AdMob.showInterstitial();
+          // AdMob.showInterstitial();
         }
         ionic.Platform.exitApp();
         return false;
