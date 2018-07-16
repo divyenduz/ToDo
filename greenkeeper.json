@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "www/lib/angular-animate/package.json",
+        "www/lib/angular-sanitize/package.json",
+        "www/lib/angular/package.json"
+      ]
+    }
+  }
+}
